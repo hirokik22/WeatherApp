@@ -3,19 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Weather Information</title>
+    <title>Open-Metro Weather Forcast</title>
 </head>
 <body>
-    <h1>Weather Information</h1>
+    <h1>Wealther In Copenhagen</h1>
+    <h2>Hourly tempurature and percipitation probability (Past week)</h2>
     <div id="weather-data">
-        <!-- Weather data will be inserted here -->
     </div>
 
     <script>
-        var apiUrl = 'https://api.open-meteo.com/v1/forecast?latitude=55.6759&longitude=12.5655&hourly=temperature_2m,precipitation_probability&timezone=Europe%2FBerlin';
+        var apilink = 'https://api.open-meteo.com/v1/forecast?latitude=55.6759&longitude=12.5655&hourly=temperature_2m,precipitation_probability&timezone=Europe%2FBerlin';
 
         function fetchWeatherData() {
-            fetch(apiUrl)
+            fetch(apilink)
                 .then(function(response) {
                     return response.json();
                 })
