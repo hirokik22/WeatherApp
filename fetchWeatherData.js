@@ -65,8 +65,8 @@ const processWeatherData = (data) => {
             for (let i = 0; i < 24; i++) {
                 const entry = entries.find(e => e.time.getHours() === i);
                 if (entry) {
-                    const tempDiv = createDivElement(`Temperature: ${entry.temperature}°C`, 'temperature');
-                    const precipDiv = createDivElement(`Precipitation: ${entry.precipitation}%`, 'precipitation');
+                    const tempDiv = createDivElement(`Temp: ${entry.temperature}°C`, 'temperature');
+                    const precipDiv = createDivElement(`Precip: ${entry.precipitation}%`, 'precipitation');
                     const combinedDiv = document.createElement('div');
                     combinedDiv.appendChild(tempDiv);
                     combinedDiv.appendChild(precipDiv);
