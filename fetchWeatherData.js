@@ -20,14 +20,14 @@ const processWeatherData = (data) => {
     weatherDataDiv.innerHTML = ''; // Clear any existing content in the div
 
     // Determine the first and last date in the data
-    const firstDate = formatDateWithoutYear(times[0]);
-    const lastDate = formatDateWithoutYear(times[times.length - 1]);
+    const firstDate = formatDatewithoutYear(times[0]);
+    const lastDate = formatDatewithoutYear(times[times.length - 1]);
 
     // Update the h1 header with the date range
     const headerTitle = document.querySelector('h1');
     headerTitle.textContent = `Weather Forecast from ${firstDate} to ${lastDate}`;
 
-    // Create and append header row for date/time
+    // Create and append header row
     const headerRow = document.createElement('div');
     headerRow.classList.add('weather-header');
     headerRow.appendChild(createDivElement('Date/Time'));
@@ -46,21 +46,13 @@ const processWeatherData = (data) => {
 
     // Loop through grouped data and create rows
     Object.entries(groupedData).forEach(([date, entries]) => {
-        // Create day row
-        const dayRow = document.createElement('div');
-        dayRow.classList.add('weather-row');
-        const dayDiv = createDivElement(formatDay(new Date(date)));
-        dayRow.appendChild(dayDiv);
-
-        for (let i = 0; i < 24; i++) {
-            dayRow.appendChild(createDivElement('')); // Add empty divs to maintain structure
-        }
-
-        // Create date row
         const row = document.createElement('div');
         row.classList.add('weather-row');
-        const dateDiv = createDivElement(formatDateWithoutYear(new Date(date)));
+
+        const dateDiv = createDivElement(date);
+        const dayDiv = createDivElement(formatDay(new Date(date)));
         row.appendChild(dateDiv);
+        row.appendChild(dayDiv);
 
         for (let i = 0; i < 24; i++) {
             const entry = entries.find(e => e.time.getHours() === i);
@@ -76,7 +68,6 @@ const processWeatherData = (data) => {
             }
         }
 
-        weatherDataDiv.appendChild(dayRow); // Append day row before the date row
         weatherDataDiv.appendChild(row);
     });
 }
@@ -93,7 +84,7 @@ const createDivElement = (text, className) => {
 }
 
 // Helper function to format date without year
-const formatDateWithoutYear = (date) => {
+const formatDatewithoutYear = (date) => {
     const options = { month: 'short', day: 'numeric'};
     return date.toLocaleDateString(undefined, options);
 }
