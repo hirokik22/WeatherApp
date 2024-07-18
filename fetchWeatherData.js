@@ -21,34 +21,35 @@ const processWeatherData = (data) => {
 
     // Loop through the data arrays and create HTML elements for each data point
     for (let i = 0; i < times.length; i++) {
-        const timeInfo = createParagraphElement(`Time: ${new Date(times[i]).toLocaleString('en-GB', { timeZone: 'Europe/Berlin' })}`);
-        const temperatureInfo = createParagraphElement(`Temperature: ${temperatures[i]} °C`,'temperature');
-        const precipitationInfo = createParagraphElement(`Precipitation Probability: ${precipitationProbabilities[i]}%`,'percipitation');
+        const weatherRow = document.createElement('div');
+        weatherRow.classList.add('weather-row');
+        
+        const timeInfo = createDivElement(`Time: ${new Date(times[i]).toLocaleString('en-GB', { timeZone: 'Europe/Berlin' })}`);
+        const temperatureInfo = createDivElement(`Temperature: ${temperatures[i]} °C`,'temperature');
+        const precipitationInfo = createDivElement(`Precipitation Probability: ${precipitationProbabilities[i]}%`,'percipitation');
 
         // Append the created elements to the weather data div
         appendWeatherData(weatherDataDiv, timeInfo, temperatureInfo, precipitationInfo);
+        weatherDataDiv.appendChild(weatherRow);
     }
 }
 
-// Function to create a paragraph element with the given text
-const createParagraphElement = (text, className) => {
-    const p = document.createElement('p'); // Create a new paragraph element
+// Function to create a Div element with the given text
+const createDivElement = (text, className) => {
+    const div = document.createElement('div'); // Create a new Div element
     const textNode = document.createTextNode(text); // Create a text node with the given text
-    p.appendChild(textNode); // Append the text node to the paragraph element
+    div.appendChild(textNode); // Append the text node to the Div element
     if (className){
-        p.classList.add(className);//Add class if provided
+        div.classList.add(className);//Add class if provided
     }
-    return p; // Return the created paragraph element
+    return div; // Return the created Div element
 }
 
 // Function to append the weather data elements to the parent div
 const appendWeatherData = (parentDiv, timeInfo, temperatureInfo, precipitationInfo) => {
-    parentDiv.appendChild(timeInfo); // Append time info paragraph to the parent div
-    parentDiv.appendChild(temperatureInfo); // Append temperature info paragraph to the parent div
-    parentDiv.appendChild(precipitationInfo); // Append precipitation info paragraph to the parent div
-
-    const br = document.createElement('br'); // Create a line break element
-    parentDiv.appendChild(br); // Append the line break to the parent div to separate entries
+    parentDiv.appendChild(timeInfo); // Append time info Div to the parent div
+    parentDiv.appendChild(temperatureInfo); // Append temperature info Div to the parent div
+    parentDiv.appendChild(precipitationInfo); // Append precipitation info Div to the parent div
 }
 
 // Call the function with the API URL as a parameter
