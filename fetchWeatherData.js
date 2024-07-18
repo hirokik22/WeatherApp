@@ -20,8 +20,8 @@ const processWeatherData = (data) => {
     weatherDataDiv.innerHTML = ''; // Clear any existing content in the div
 
     // Determine the first and last date in the data
-    const firstDate = formatDatewithoutYear(times[0]);
-    const lastDate = formatDatewithoutYear(times[times.length - 1]);
+    const firstDate = formatDateWithoutYear(times[0]);
+    const lastDate = formatDateWithoutYear(times[times.length - 1]);
 
     // Update the h1 header with the date range
     const headerTitle = document.querySelector('h1');
@@ -36,6 +36,15 @@ const processWeatherData = (data) => {
     }
     weatherDataDiv.appendChild(headerRow);
 
+    // Create and append day header row
+    const dayHeaderRow = document.createElement('div');
+    dayHeaderRow.classList.add('weather-header');
+    dayHeaderRow.appendChild(createDivElement('Day'));
+    for (let i = 0; i < 24; i++) {
+        dayHeaderRow.appendChild(createDivElement(''));
+    }
+    weatherDataDiv.appendChild(dayHeaderRow);
+
     // Group data by date
     const groupedData = times.reduce((acc, time, index) => {
         const date = time.toLocaleDateString('en-GB');
@@ -49,10 +58,9 @@ const processWeatherData = (data) => {
         const row = document.createElement('div');
         row.classList.add('weather-row');
 
-        const dateDiv = createDivElement(date);
+        const dateDiv = createDivElement(formatDateWithoutYear(new Date(date)));
         const dayDiv = createDivElement(formatDay(new Date(date)));
         row.appendChild(dateDiv);
-        row.appendChild(dayDiv);
 
         for (let i = 0; i < 24; i++) {
             const entry = entries.find(e => e.time.getHours() === i);
@@ -68,6 +76,7 @@ const processWeatherData = (data) => {
             }
         }
 
+        weatherDataDiv.appendChild(dayDiv); // Append day row after the date row
         weatherDataDiv.appendChild(row);
     });
 }
@@ -84,7 +93,7 @@ const createDivElement = (text, className) => {
 }
 
 // Helper function to format date without year
-const formatDatewithoutYear = (date) => {
+const formatDateWithoutYear = (date) => {
     const options = { month: 'short', day: 'numeric'};
     return date.toLocaleDateString(undefined, options);
 }
