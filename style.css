@@ -33,31 +33,32 @@ h1 {
     position: relative;
 }
 
-.weather-header {
+.weather-header,
+.weather-row {
     display: flex;
+    background-color: #f9f9f9;
+}
+
+.weather-header {
     position: sticky;
     top: 0;
-    overflow-x: auto;
-    background-color: #f0c9c9;
     z-index: 1;
+    border-bottom: 2px solid #ddd;
 }
 
 .weather-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 10px 0;
-    padding: 10px;
-    border-radius: 5px;
+    border-bottom: 1px solid #ddd;
 }
 
-.weather-header div, .weather-row div {
+.weather-header div,
+.weather-row div {
     flex: 1;
     text-align: center;
     min-width: 100px;
 }
 
-.weather-header div:first-child, .weather-row div:first-child {
+.weather-header div:first-child,
+.weather-row div:first-child {
     flex: 2;
     text-align: center;
 }
