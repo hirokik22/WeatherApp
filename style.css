@@ -76,3 +76,15 @@ h1 {
     font-size: 1em;
     color: #4b8d64;
 }
+
+.heatmap-hot {
+    background-color: pink;
+}
+
+.heatmap-cold {
+    background-color: lightblue;
+}
+
+.heatmap-mild {
+    background-color: lightgreen;
+}

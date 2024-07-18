@@ -70,6 +70,7 @@ const processWeatherData = (data) => {
                     const combinedDiv = document.createElement('div');
                     combinedDiv.appendChild(tempDiv);
                     combinedDiv.appendChild(precipDiv);
+                    applyHeatmap(tempDiv, entry.temperature);
                     row.appendChild(combinedDiv);
                 } else {
                     row.appendChild(createDivElement(''));
@@ -80,6 +81,17 @@ const processWeatherData = (data) => {
         });
     } catch (error) {
         console.error('Error processing weather data:', error);
+    }
+}
+
+// Function to apply heatmap based on temperature
+const applyHeatmap = (element, temperature) => {
+    if (temperature > 20) {
+        element.style.backgroundColor = 'pink';
+    } else if (temperature < 13) {
+        element.style.backgroundColor = 'lightblue';
+    } else {
+        element.style.backgroundColor = 'lightgreen';
     }
 }
 
