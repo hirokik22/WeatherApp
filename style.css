@@ -17,9 +17,9 @@ body {
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     width: 90%;
-    max-width: 1200px;
+    max-width: auto;
     height: 90%;
-    overflow: hidden;
+    overflow: auto;
 }
 
 h1 {
