@@ -38,7 +38,7 @@ const processWeatherData = (data) => {
         headerRow.classList.add('weather-header');
         headerRow.appendChild(createDivElement('Date'));
         headerRow.appendChild(createDivElement('Day'));
-        for (let i = 0; i < 24; i++) {
+        for (let i = 6; i < 24; i++) {
             headerRow.appendChild(createDivElement(`${i}:00`));
         }
         weatherDataDiv.appendChild(headerRow);
@@ -62,7 +62,7 @@ const processWeatherData = (data) => {
             row.appendChild(dateDiv);
             row.appendChild(dayDiv);
 
-            for (let i = 0; i < 24; i++) {
+            for (let i = 6; i < 24; i++) {
                 const entry = entries.find(e => e.time.getHours() === i);
                 if (entry) {
                     const combinedDiv = document.createElement('div');
