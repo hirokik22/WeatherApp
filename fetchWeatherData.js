@@ -20,6 +20,14 @@ const processWeatherData = (data) => {
     const weatherDataDiv = document.getElementById('weather-info'); // Get the div where weather data will be displayed
     weatherDataDiv.innerHTML = ''; // Clear any existing content in the div
 
+    // Determine the first and last date in the data
+    const firstDate = times[0].toLocaleDateString('en-GB');
+    const lastDate = times[times.length - 1].toLocaleDateString('en-GB');
+
+    // Update the h1 header with the date range
+    const headerTitle = document.querySelector('.container h1');
+    headerTitle.textContent = 'Weather Forecast from ${firstDate} to ${lastDate}';
+
     // Create and append header row
     const headerRow = document.createElement('div');
     headerRow.classList.add('weather-header');
