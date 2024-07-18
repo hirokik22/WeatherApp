@@ -20,8 +20,8 @@ const processWeatherData = (data) => {
     weatherDataDiv.innerHTML = ''; // Clear any existing content in the div
 
     // Determine the first and last date in the data
-    const firstDate = times[0].toLocaleDateString('en-GB');
-    const lastDate = times[times.length - 1].toLocaleDateString('en-GB');
+    const firstDate = formatDatewithoutYear(times[0]);
+    const lastDate = formatDatewithoutYear(times[times.length - 1]);
 
     // Update the h1 header with the date range
     const headerTitle = document.querySelector('h1');
@@ -50,7 +50,9 @@ const processWeatherData = (data) => {
         row.classList.add('weather-row');
 
         const dateDiv = createDivElement(date);
+        const dayDiv = createDivElement(formatDay(new Date(date)));
         row.appendChild(dateDiv);
+        row.appendChild(dayDiv);
 
         for (let i = 0; i < 24; i++) {
             const entry = entries.find(e => e.time.getHours() === i);
@@ -79,6 +81,18 @@ const createDivElement = (text, className) => {
         div.classList.add(className); // Add class if provided
     }
     return div; // Return the created div element
+}
+
+// Helper function to format date without year
+const formatDatewithoutYear = (date) => {
+    const options = { month: 'short', day: 'numeric'};
+    return date.toLocaleDateString(undefined, options);
+}
+
+// Helper function to format day of the week
+const formatDay = (date) => {
+    const options = { weekday: 'long' };
+    return date.toLocaleDateString(undefined, options);
 }
 
 // Call the function with the API URL as a parameter
