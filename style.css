@@ -29,6 +29,7 @@ h1 {
 #weather-info {
     width: 100%;
     overflow-x: auto;
+    background-color: #f9f9f9;
     position: relative;
 }
 
