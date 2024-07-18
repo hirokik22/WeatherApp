@@ -9,10 +9,6 @@ body {
     height: 100vh;
 }
 
-h1 {
-    color: #333;
-}
-
 .container {
     text-align: center;
     background-color: #fff;
@@ -21,15 +17,23 @@ h1 {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     width: 80%;
     max-width: 1200px;
+    overflow-x: auto;
+}
+
+h1 {
+    color: #333;
 }
 
 #weather-info {
     margin-top: 20px;
+    width: 100%;
 }
 
 .weather-row {
     display: flex;
+    flex-direction: row;
     justify-content: space-between;
+    align-items: center;
     margin: 10px 0;
     padding: 10px;
     background-color: #f9f9f9;
@@ -38,16 +42,31 @@ h1 {
 
 .weather-row div {
     flex: 1;
-    text-align: left;
+    text-align: center;
     margin: 0 10px;
 }
 
+.weather-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: #e0e0e0;
+    padding: 10px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.weather-header div {
+    flex: 1;
+    text-align: center;
+}
+
 .temperature {
-    font-size: 1.5em;
+    font-size: 1em;
     color: #ff4500;
 }
 
 .precipitation {
-    font-size: 1.2em;
+    font-size: 1em;
     color: #1e90ff;
 }

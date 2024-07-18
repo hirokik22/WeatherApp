@@ -12,44 +12,65 @@ const fetchWeatherData = (apiUrl) => {
 
 // Function to process the fetched weather data
 const processWeatherData = (data) => {
-    const times = data.hourly.time; // Extract times array from data
+    const times = data.hourly.time.map(time => new Date(time)); // Convert times to Date objects
     const temperatures = data.hourly.temperature_2m; // Extract temperatures array from data
     const precipitationProbabilities = data.hourly.precipitation_probability; // Extract precipitation probabilities array from data
 
     const weatherDataDiv = document.getElementById('weather-info'); // Get the div where weather data will be displayed
     weatherDataDiv.innerHTML = ''; // Clear any existing content in the div
 
-    // Loop through the data arrays and create HTML elements for each data point
-    for (let i = 0; i < times.length; i++) {
-        const weatherRow = document.createElement('div');
-        weatherRow.classList.add('weather-row');
-        
-        const timeInfo = createDivElement(`Time: ${new Date(times[i]).toLocaleString('en-GB', { timeZone: 'Europe/Berlin' })}`);
-        const temperatureInfo = createDivElement(`Temperature: ${temperatures[i]} °C`,'temperature');
-        const precipitationInfo = createDivElement(`Precipitation Probability: ${precipitationProbabilities[i]}%`,'percipitation');
-
-        // Append the created elements to the weather data div
-        appendWeatherData(weatherDataDiv, timeInfo, temperatureInfo, precipitationInfo);
-        weatherDataDiv.appendChild(weatherRow);
+    // Create and append header row
+    const headerRow = document.createElement('div');
+    headerRow.classList.add('weather-header');
+    headerRow.appendChild(createDivElement('Date/Time'));
+    for (let i = 0; i < 24; i++) {
+        headerRow.appendChild(createDivElement(`${i}:00`));
     }
+    weatherDataDiv.appendChild(headerRow);
+
+    // Group data by date
+    const groupedData = times.reduce((acc, time, index) => {
+        const date = time.toLocaleDateString('en-GB');
+        if (!acc[date]) acc[date] = [];
+        acc[date].push({ time, temperature: temperatures[index], precipitation: precipitationProbabilities[index] });
+        return acc;
+    }, {});
+
+    // Loop through grouped data and create rows
+    Object.entries(groupedData).forEach(([date, entries]) => {
+        const row = document.createElement('div');
+        row.classList.add('weather-row');
+
+        const dateDiv = createDivElement(date);
+        row.appendChild(dateDiv);
+
+        for (let i = 0; i < 24; i++) {
+            const entry = entries.find(e => e.time.getHours() === i);
+            if (entry) {
+                const tempDiv = createDivElement(`Temperature: ${entry.temperature}°C`, 'temperature');
+                const precipDiv = createDivElement(`Precipitation: ${entry.precipitation}%`, 'precipitation');
+                const combinedDiv = document.createElement('div');
+                combinedDiv.appendChild(tempDiv);
+                combinedDiv.appendChild(precipDiv);
+                row.appendChild(combinedDiv);
+            } else {
+                row.appendChild(createDivElement(''));
+            }
+        }
+
+        weatherDataDiv.appendChild(row);
+    });
 }
 
-// Function to create a Div element with the given text
+// Function to create a div element with the given text
 const createDivElement = (text, className) => {
-    const div = document.createElement('div'); // Create a new Div element
+    const div = document.createElement('div'); // Create a new div element
     const textNode = document.createTextNode(text); // Create a text node with the given text
-    div.appendChild(textNode); // Append the text node to the Div element
-    if (className){
-        div.classList.add(className);//Add class if provided
+    div.appendChild(textNode); // Append the text node to the div element
+    if (className) {
+        div.classList.add(className); // Add class if provided
     }
-    return div; // Return the created Div element
-}
-
-// Function to append the weather data elements to the parent div
-const appendWeatherData = (parentDiv, timeInfo, temperatureInfo, precipitationInfo) => {
-    parentDiv.appendChild(timeInfo); // Append time info Div to the parent div
-    parentDiv.appendChild(temperatureInfo); // Append temperature info Div to the parent div
-    parentDiv.appendChild(precipitationInfo); // Append precipitation info Div to the parent div
+    return div; // Return the created div element
 }
 
 // Call the function with the API URL as a parameter
