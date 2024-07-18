@@ -37,6 +37,7 @@ h1 {
 .weather-row {
     display: flex;
     background-color: #f9f9f9;
+    margin-bottom: 10px;
 }
 
 .weather-header {
@@ -44,10 +45,12 @@ h1 {
     top: 0;
     z-index: 1;
     border-bottom: 2px solid #ddd;
+    padding: 10px 0;
 }
 
 .weather-row {
     border-bottom: 1px solid #ddd;
+    padding: 10px 0;
 }
 
 .weather-header div,
@@ -55,6 +58,7 @@ h1 {
     flex: 1;
     text-align: center;
     min-width: 100px;
+    margin: 0 5px;
 }
 
 .weather-header div:first-child,
@@ -65,10 +69,10 @@ h1 {
 
 .temperature {
     font-size: 1em;
-    color: #ff4500;
+    color: #8b4a48;
 }
 
 .precipitation {
     font-size: 1em;
-    color: #1e90ff;
+    color: #4b8d64;
 }
