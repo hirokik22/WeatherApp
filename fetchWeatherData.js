@@ -31,7 +31,7 @@ const processWeatherData = (data) => {
 
         // Update the h1 header with the date range
         const headerTitle = document.querySelector('h1');
-        headerTitle.textContent = `Weather Forecast from ${firstDate} to ${lastDate}`;
+        headerTitle.textContent = `Weather In Copenhagen from ${firstDate} to ${lastDate}`;
 
         // Create and append header row
         const headerRow = document.createElement('div');
