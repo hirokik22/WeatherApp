@@ -52,6 +52,10 @@ h1 {
     border-radius: 5px;
 }
 
+.weather-header > .weather-row {
+    background-color: inherit;
+}
+
 .weather-header div, .weather-row div {
     flex: 1;
     text-align: center;
@@ -61,15 +65,6 @@ h1 {
 .weather-header div:first-child, .weather-row div:first-child {
     flex: 2;
     text-align: center;
-}
-
-.flexbox-contrainer {
-    background-color: azure;
-    overflow-x: auto;
-}
-
-.flexbox-contrainer > .flexbox-item {
-    background-color: inherit;
 }
 
 .temperature {
