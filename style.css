@@ -7,6 +7,7 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
+    overflow: hidden;
 }
 
 .container {
@@ -15,23 +16,32 @@ body {
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 80%;
+    width: 90%;
     max-width: 1200px;
-    overflow-x: auto;
+    height: 90%;
+    overflow: hidden;
 }
 
 h1 {
     color: #333;
 }
 
-#weather-info {
-    margin-top: 20px;
+.weather-table {
     width: 100%;
+    overflow-x: auto;
+    position: relative;
+}
+
+.weather-header {
+    display: flex;
+    position: sticky;
+    top: 0;
+    background-color: #e0e0e0;
+    z-index: 1;
 }
 
 .weather-row {
     display: flex;
-    flex-direction: row;
     justify-content: space-between;
     align-items: center;
     margin: 10px 0;
@@ -40,25 +50,15 @@ h1 {
     border-radius: 5px;
 }
 
-.weather-row div {
+.weather-header div, .weather-row div {
     flex: 1;
     text-align: center;
-    margin: 0 10px;
+    min-width: 100px;
 }
 
-.weather-header {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    background-color: #e0e0e0;
-    padding: 10px;
-    border-radius: 5px;
-    font-weight: bold;
-}
-
-.weather-header div {
-    flex: 1;
-    text-align: center;
+.weather-header div:first-child, .weather-row div:first-child {
+    flex: 2;
+    text-align: left;
 }
 
 .temperature {
