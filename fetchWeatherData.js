@@ -36,7 +36,8 @@ const processWeatherData = (data) => {
         // Create and append header row
         const headerRow = document.createElement('div');
         headerRow.classList.add('weather-header');
-        headerRow.appendChild(createDivElement('Date/Time'));
+        headerRow.appendChild(createDivElement('Date'));
+        headerRow.appendChild(createDivElement('Day'));
         for (let i = 0; i < 24; i++) {
             headerRow.appendChild(createDivElement(`${i}:00`));
         }
