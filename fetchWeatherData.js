@@ -65,12 +65,11 @@ const processWeatherData = (data) => {
             for (let i = 0; i < 24; i++) {
                 const entry = entries.find(e => e.time.getHours() === i);
                 if (entry) {
-                    const tempDiv = createDivElement(`Temp: ${entry.temperature}°C`, 'temperature');
-                    const precipDiv = createDivElement(`Precip: ${entry.precipitation}%`, 'precipitation');
                     const combinedDiv = document.createElement('div');
-                    combinedDiv.appendChild(tempDiv);
-                    combinedDiv.appendChild(precipDiv);
-                    applyHeatmap(tempDiv, entry.temperature);
+                    combinedDiv.classList.add('temperature-container');
+                    combinedDiv.appendChild(createDivElement(`Temp: ${entry.temperature}°C`, 'temperature'));
+                    combinedDiv.appendChild(createDivElement(`Precip: ${entry.precipitation}%`, 'precipitation'));
+                    applyHeatmap(combinedDiv, entry.temperature);
                     row.appendChild(combinedDiv);
                 } else {
                     row.appendChild(createDivElement(''));
@@ -87,11 +86,11 @@ const processWeatherData = (data) => {
 // Function to apply heatmap based on temperature
 const applyHeatmap = (element, temperature) => {
     if (temperature > 20) {
-        element.style.backgroundColor = 'pink';
+        element.classList.add('heatmap-hot');
     } else if (temperature < 13) {
-        element.style.backgroundColor = 'lightblue';
+        element.classList.add('heatmap-cold');
     } else {
-        element.style.backgroundColor = 'lightgreen';
+        element.classList.add('heatmap-mild');
     }
 }
 

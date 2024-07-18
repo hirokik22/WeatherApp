@@ -77,6 +77,15 @@ h1 {
     color: #4b8d64;
 }
 
+.temperature-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    border-radius: 5px;
+}
+
 .heatmap-hot {
     background-color: pink;
 }
