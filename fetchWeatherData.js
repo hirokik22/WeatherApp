@@ -16,14 +16,14 @@ const processWeatherData = (data) => {
     const temperatures = data.hourly.temperature_2m; // Extract temperatures array from data
     const precipitationProbabilities = data.hourly.precipitation_probability; // Extract precipitation probabilities array from data
 
-    const weatherDataDiv = document.getElementById('weather-data'); // Get the div where weather data will be displayed
+    const weatherDataDiv = document.getElementById('weather-info'); // Get the div where weather data will be displayed
     weatherDataDiv.innerHTML = ''; // Clear any existing content in the div
 
     // Loop through the data arrays and create HTML elements for each data point
     for (let i = 0; i < times.length; i++) {
         const timeInfo = createParagraphElement(`Time: ${new Date(times[i]).toLocaleString('en-GB', { timeZone: 'Europe/Berlin' })}`);
-        const temperatureInfo = createParagraphElement(`Temperature: ${temperatures[i]} °C`);
-        const precipitationInfo = createParagraphElement(`Precipitation Probability: ${precipitationProbabilities[i]}%`);
+        const temperatureInfo = createParagraphElement(`Temperature: ${temperatures[i]} °C`,'temperature');
+        const precipitationInfo = createParagraphElement(`Precipitation Probability: ${precipitationProbabilities[i]}%`,'percipitation');
 
         // Append the created elements to the weather data div
         appendWeatherData(weatherDataDiv, timeInfo, temperatureInfo, precipitationInfo);
@@ -31,10 +31,13 @@ const processWeatherData = (data) => {
 }
 
 // Function to create a paragraph element with the given text
-const createParagraphElement = (text) => {
+const createParagraphElement = (text, className) => {
     const p = document.createElement('p'); // Create a new paragraph element
     const textNode = document.createTextNode(text); // Create a text node with the given text
     p.appendChild(textNode); // Append the text node to the paragraph element
+    if (className){
+        p.classList.add(className);//Add class if provided
+    }
     return p; // Return the created paragraph element
 }
 

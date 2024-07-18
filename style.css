@@ -21,11 +21,11 @@ h1 {
     color: #333;
 }
 
-.weather-info {
+#weather-info {
     margin-top: 20px;
 }
 
-.weather-info div {
+#weather-info div {
     margin: 10px 0;
 }
 
