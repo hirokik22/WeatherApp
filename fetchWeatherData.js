@@ -16,7 +16,6 @@ const processWeatherData = (data) => {
     const temperatures = data.hourly.temperature_2m; // Extract temperatures array from data
     const precipitationProbabilities = data.hourly.precipitation_probability; // Extract precipitation probabilities array from data
 
-    const weatherHeaderDiv = document.getElementById('weather-header');
     const weatherDataDiv = document.getElementById('weather-info'); // Get the div where weather data will be displayed
     weatherDataDiv.innerHTML = ''; // Clear any existing content in the div
 
@@ -25,8 +24,8 @@ const processWeatherData = (data) => {
     const lastDate = times[times.length - 1].toLocaleDateString('en-GB');
 
     // Update the h1 header with the date range
-    const headerTitle = document.querySelector('.container h1');
-    headerTitle.textContent = 'Weather Forecast from ${firstDate} to ${lastDate}';
+    const headerTitle = document.querySelector('h1');
+    headerTitle.textContent = `Weather Forecast from ${firstDate} to ${lastDate}`;
 
     // Create and append header row
     const headerRow = document.createElement('div');
@@ -35,7 +34,7 @@ const processWeatherData = (data) => {
     for (let i = 0; i < 24; i++) {
         headerRow.appendChild(createDivElement(`${i}:00`));
     }
-    weatherHeaderDiv.appendChild(headerRow);
+    weatherDataDiv.appendChild(headerRow);
 
     // Group data by date
     const groupedData = times.reduce((acc, time, index) => {
