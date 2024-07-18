@@ -27,7 +27,7 @@ const processWeatherData = (data) => {
     const headerTitle = document.querySelector('h1');
     headerTitle.textContent = `Weather Forecast from ${firstDate} to ${lastDate}`;
 
-    // Create and append header row
+    // Create and append header row for date/time
     const headerRow = document.createElement('div');
     headerRow.classList.add('weather-header');
     headerRow.appendChild(createDivElement('Date/Time'));
@@ -35,15 +35,6 @@ const processWeatherData = (data) => {
         headerRow.appendChild(createDivElement(`${i}:00`));
     }
     weatherDataDiv.appendChild(headerRow);
-
-    // Create and append day header row
-    const dayHeaderRow = document.createElement('div');
-    dayHeaderRow.classList.add('weather-header');
-    dayHeaderRow.appendChild(createDivElement('Day'));
-    for (let i = 0; i < 24; i++) {
-        dayHeaderRow.appendChild(createDivElement(''));
-    }
-    weatherDataDiv.appendChild(dayHeaderRow);
 
     // Group data by date
     const groupedData = times.reduce((acc, time, index) => {
@@ -55,11 +46,20 @@ const processWeatherData = (data) => {
 
     // Loop through grouped data and create rows
     Object.entries(groupedData).forEach(([date, entries]) => {
+        // Create day row
+        const dayRow = document.createElement('div');
+        dayRow.classList.add('weather-row');
+        const dayDiv = createDivElement(formatDay(new Date(date)));
+        dayRow.appendChild(dayDiv);
+
+        for (let i = 0; i < 24; i++) {
+            dayRow.appendChild(createDivElement('')); // Add empty divs to maintain structure
+        }
+
+        // Create date row
         const row = document.createElement('div');
         row.classList.add('weather-row');
-
         const dateDiv = createDivElement(formatDateWithoutYear(new Date(date)));
-        const dayDiv = createDivElement(formatDay(new Date(date)));
         row.appendChild(dateDiv);
 
         for (let i = 0; i < 24; i++) {
@@ -76,7 +76,7 @@ const processWeatherData = (data) => {
             }
         }
 
-        weatherDataDiv.appendChild(dayDiv); // Append day row after the date row
+        weatherDataDiv.appendChild(dayRow); // Append day row before the date row
         weatherDataDiv.appendChild(row);
     });
 }
