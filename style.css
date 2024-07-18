@@ -37,7 +37,7 @@ h1 {
     display: flex;
     position: sticky;
     top: 0;
-    overflow-anchor: auto;
+    overflow-x: auto;
     background-color: #f0c9c9;
     z-index: 1;
 }
@@ -49,10 +49,6 @@ h1 {
     margin: 10px 0;
     padding: 10px;
     border-radius: 5px;
-}
-
-.weather-header > .weather-row {
-    background-color: inherit;
 }
 
 .weather-header div, .weather-row div {
