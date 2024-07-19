@@ -58,7 +58,7 @@ h1 {
 .weather-row div {
     flex: 1;
     text-align: center;
-    min-width: 80px; /* Adjust the width as necessary */
+    min-width: 100px; /* Adjust the width as necessary */
     margin: 0 5px;
 }
 
