@@ -38,7 +38,7 @@ h1 {
     display: flex;
     background-color: #f9f9f9;
     margin-bottom: 10px;
-    width: max-content /* Ensure the container expands as needed */
+    width: max-content; /* Ensure the container expands as needed */
 }
 
 .weather-header {
@@ -58,7 +58,7 @@ h1 {
 .weather-row div {
     flex: 1;
     text-align: center;
-    min-width: 100px;
+    min-width: 100px; /* Set a fixed width for each hour block */
     margin: 0 5px;
 }
 
@@ -66,7 +66,7 @@ h1 {
 .weather-row div:first-child {
     flex: 2;
     text-align: center;
-    min-width: 100px; /* Ajust width for the date and day columns */
+    min-width: 150px; /* Adjust width for the date and day columns */
 }
 
 .temperature {
