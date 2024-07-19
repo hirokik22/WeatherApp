@@ -64,16 +64,16 @@ h1 {
 
 .weather-header div:first-child,
 .weather-row div:first-child {
-    flex: 2;
+    flex: 1;
     text-align: center;
-    min-width: 80px; /* Adjust width for the date column */
+    min-width: 100px; /* Adjust width for the date column */
 }
 
 .weather-header div:nth-child(2),
 .weather-row div:nth-child(2) {
-    flex: 1.5;
+    flex: 1;
     text-align: center;
-    min-width: 80px; /* Adjust width for the day column */
+    min-width: 100px; /* Adjust width for the day column */
 }
 
 .temperature {
