@@ -50,7 +50,10 @@ h1 {
 }
 
 .weather-row {
-    border-bottom: 1px solid #ddd;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    border-bottom: 2px solid #ddd;
     padding: 10px 0;
 }
 
