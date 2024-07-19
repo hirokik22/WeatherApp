@@ -13,7 +13,7 @@ body {
 .container {
     text-align: center;
     background-color: #fff;
-    padding: 0px;
+    padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     width: 90%;
@@ -38,7 +38,6 @@ h1 {
     display: flex;
     background-color: #f9f9f9;
     margin-bottom: 10px;
-    width: max-content; /* Ensure the container expands as needed */
 }
 
 .weather-header {
@@ -50,7 +49,7 @@ h1 {
 }
 
 .weather-row {
-    border-bottom: 2px solid #ddd;
+    border-bottom: 1px solid #ddd;
     padding: 10px 0;
 }
 
@@ -58,18 +57,14 @@ h1 {
 .weather-row div {
     flex: 1;
     text-align: center;
-    min-width: 100px; /* Set a consistent width */
-    padding: 0 5px;
+    min-width: 100px;
+    margin: 0 5px;
 }
 
-.temperature-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 10px;
-    border-radius: 5px;
-    min-width: 100px; /* Ensure consistent width */
+.weather-header div:first-child,
+.weather-row div:first-child {
+    flex: 2;
+    text-align: center;
 }
 
 .temperature {
@@ -80,6 +75,15 @@ h1 {
 .precipitation {
     font-size: 1em;
     color: #4b8d64;
+}
+
+.temperature-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    border-radius: 5px;
 }
 
 .heatmap-hot {
