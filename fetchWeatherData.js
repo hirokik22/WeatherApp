@@ -1,3 +1,19 @@
+const fetchWeatherData = (apiUrl) => {
+    fetch(apiUrl)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok ' + response.statusText);
+            }
+            return response.json();
+        }) // Convert the response to JSON
+        .then(data => {
+            processWeatherData(data); // Process the JSON data
+        })
+        .catch(error => {
+            console.error('Error fetching weather data:', error); // Handle any errors
+        });
+}
+
 const processWeatherData = (data) => {
     try {
         const times = data.hourly.time.map(time => new Date(time));
@@ -59,3 +75,40 @@ const processWeatherData = (data) => {
         console.error('Error processing weather data:', error);
     }
 }
+
+const applyHeatmap = (element, temperature) => {
+    if (temperature >= 20) {
+        element.classList.add('heatmap-hot');
+    } else if (temperature <= 13) {
+        element.classList.add('heatmap-cold');
+    } else {
+        element.classList.add('heatmap-mild');
+    }
+}
+
+const createDivElement = (text, className) => {
+    const div = document.createElement('div');
+    const textNode = document.createTextNode(text);
+    div.appendChild(textNode);
+    if (className) {
+        div.classList.add(className);
+    }
+    return div;
+}
+
+const formatDatewithoutYear = (date) => {
+    const options = { month: 'short', day: 'numeric' };
+    return date.toLocaleDateString(undefined, options);
+}
+
+const formatDay = (date) => {
+    if (isNaN(date)) {
+        console.error('Invalid date:', date);
+        return 'Invalid date';
+    }
+    const options = { weekday: 'long' };
+    return date.toLocaleDateString(undefined, options);
+}
+
+const apiUrl = 'https://api.open-meteo.com/v1/forecast?latitude=55.6759&longitude=12.5655&hourly=temperature_2m,precipitation_probability&timezone=Europe%2FBerlin';
+fetchWeatherData(apiUrl);
