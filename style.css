@@ -50,9 +50,6 @@ h1 {
 }
 
 .weather-row {
-    position: sticky;
-    top: 0;
-    z-index: 1;
     border-bottom: 2px solid #ddd;
     padding: 10px 0;
 }
@@ -61,18 +58,18 @@ h1 {
 .weather-row div {
     flex: 1;
     text-align: center;
-    min-width: 100px; /* Adjust the width as necessary */
-    margin: 0 5px;
+    width: 100px; /* Set a consistent width */
+    padding: 0 5px;
 }
 
-.weather-header div:first-child,
-.weather-row div:first-child {
-    min-width: 100px; /* Adjust width for the date column */
-}
-
-.weather-header div:nth-child(2),
-.weather-row div:nth-child(2) {
-    min-width: 100px; /* Adjust width for the day column */
+.temperature-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    border-radius: 5px;
+    width: 100px; /* Set a consistent width */
 }
 
 .temperature {
@@ -83,15 +80,6 @@ h1 {
 .precipitation {
     font-size: 1em;
     color: #4b8d64;
-}
-
-.temperature-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 10px;
-    border-radius: 5px;
 }
 
 .heatmap-hot {
