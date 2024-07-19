@@ -3,8 +3,9 @@ body {
     background-color: #f0f8ff;
     margin: 0;
     padding: 0;
-    display: grid;
-    place-items: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     height: 100vh;
     overflow: hidden;
 }
@@ -12,7 +13,7 @@ body {
 .container {
     text-align: center;
     background-color: #fff;
-    padding: 20px;
+    padding: 0px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     width: 90%;
@@ -30,34 +31,45 @@ h1 {
     overflow-x: auto;
     background-color: #f9f9f9;
     position: relative;
-    display: grid;
-    grid-template-columns: repeat(22, minmax(100px, 1fr)); /* 20 columns for hours + 1 for date + 1 for day */
-    gap: 10px;
+}
+
+.weather-header,
+.weather-row {
+    display: flex;
+    background-color: #f9f9f9;
+    margin-bottom: 10px;
+    width: max-content; /* Ensure the container expands as needed */
 }
 
 .weather-header {
-    display: contents; /* Allows the children to be placed in the grid directly */
-    background-color: #f9f9f9;
     position: sticky;
     top: 0;
     z-index: 1;
     border-bottom: 2px solid #ddd;
+    padding: 10px 0;
 }
 
 .weather-row {
-    display: contents; /* Allows the children to be placed in the grid directly */
-    border-bottom: 1px solid #ddd;
+    border-bottom: 2px solid #ddd;
+    padding: 10px 0;
 }
 
 .weather-header div,
 .weather-row div {
+    flex: 1;
     text-align: center;
-    padding: 10px;
-    border: 1px solid #ddd;
+    min-width: 100px; /* Set a consistent width */
+    padding: 0 5px;
 }
 
-.weather-header div {
-    background-color: #f1f1f1;
+.temperature-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    border-radius: 5px;
+    min-width: 100px; /* Ensure consistent width */
 }
 
 .temperature {
@@ -68,13 +80,6 @@ h1 {
 .precipitation {
     font-size: 1em;
     color: #4b8d64;
-}
-
-.temperature-container {
-    display: grid;
-    place-items: center;
-    padding: 10px;
-    border-radius: 5px;
 }
 
 .heatmap-hot {
