@@ -1,21 +1,3 @@
-// Function to fetch weather data from the provided API URL
-const fetchWeatherData = (apiUrl) => {
-    fetch(apiUrl)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok ' + response.statusText);
-            }
-            return response.json();
-        }) // Convert the response to JSON
-        .then(data => {
-            processWeatherData(data); // Process the JSON data
-        })
-        .catch(error => {
-            console.error('Error fetching weather data:', error); // Handle any errors
-        });
-}
-
-// Function to process the fetched weather data
 const processWeatherData = (data) => {
     try {
         const times = data.hourly.time.map(time => new Date(time)); // Convert times to Date objects
@@ -38,7 +20,7 @@ const processWeatherData = (data) => {
         headerRow.classList.add('weather-header');
         headerRow.appendChild(createDivElement('Date'));
         headerRow.appendChild(createDivElement('Day'));
-        for (let i = 6; i < 24; i++) {
+        for (let i = 6; i < 26; i++) { // Adjust to show 20 columns
             headerRow.appendChild(createDivElement(`${i}:00`));
         }
         weatherDataDiv.appendChild(headerRow);
@@ -62,7 +44,7 @@ const processWeatherData = (data) => {
             row.appendChild(dateDiv);
             row.appendChild(dayDiv);
 
-            for (let i = 6; i < 24; i++) {
+            for (let i = 6; i < 26; i++) { // Adjust to show 20 columns
                 const entry = entries.find(e => e.time.getHours() === i);
                 if (entry) {
                     const combinedDiv = document.createElement('div');

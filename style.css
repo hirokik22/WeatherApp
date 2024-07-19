@@ -31,17 +31,13 @@ h1 {
     background-color: #f9f9f9;
     position: relative;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    grid-template-columns: repeat(22, minmax(100px, 1fr)); /* 20 columns for hours + 1 for date + 1 for day */
     gap: 10px;
 }
 
-.weather-header,
-.weather-row {
+.weather-header {
     display: contents; /* Allows the children to be placed in the grid directly */
     background-color: #f9f9f9;
-}
-
-.weather-header {
     position: sticky;
     top: 0;
     z-index: 1;
@@ -49,6 +45,7 @@ h1 {
 }
 
 .weather-row {
+    display: contents; /* Allows the children to be placed in the grid directly */
     border-bottom: 1px solid #ddd;
 }
 
@@ -57,6 +54,10 @@ h1 {
     text-align: center;
     padding: 10px;
     border: 1px solid #ddd;
+}
+
+.weather-header div {
+    background-color: #f1f1f1;
 }
 
 .temperature {
