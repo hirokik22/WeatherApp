@@ -85,9 +85,9 @@ const processWeatherData = (data) => {
 
 // Function to apply heatmap based on temperature
 const applyHeatmap = (element, temperature) => {
-    if (temperature > 20) {
+    if (temperature >= 20) {
         element.classList.add('heatmap-hot');
-    } else if (temperature < 13) {
+    } else if (temperature <= 13) {
         element.classList.add('heatmap-cold');
     } else {
         element.classList.add('heatmap-mild');
