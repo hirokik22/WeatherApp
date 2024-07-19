@@ -3,9 +3,8 @@ body {
     background-color: #f0f8ff;
     margin: 0;
     padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    display: grid;
+    place-items: center;
     height: 100vh;
     overflow: hidden;
 }
@@ -31,13 +30,15 @@ h1 {
     overflow-x: auto;
     background-color: #f9f9f9;
     position: relative;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 10px;
 }
 
 .weather-header,
 .weather-row {
-    display: flex;
+    display: contents; /* Allows the children to be placed in the grid directly */
     background-color: #f9f9f9;
-    margin-bottom: 10px;
 }
 
 .weather-header {
@@ -45,26 +46,17 @@ h1 {
     top: 0;
     z-index: 1;
     border-bottom: 2px solid #ddd;
-    padding: 10px 0;
 }
 
 .weather-row {
     border-bottom: 1px solid #ddd;
-    padding: 10px 0;
 }
 
 .weather-header div,
 .weather-row div {
-    flex: 1;
     text-align: center;
-    min-width: 100px;
-    margin: 0 5px;
-}
-
-.weather-header div:first-child,
-.weather-row div:first-child {
-    flex: 2;
-    text-align: center;
+    padding: 10px;
+    border: 1px solid #ddd;
 }
 
 .temperature {
@@ -78,10 +70,8 @@ h1 {
 }
 
 .temperature-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    display: grid;
+    place-items: center;
     padding: 10px;
     border-radius: 5px;
 }
