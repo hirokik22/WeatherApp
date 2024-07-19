@@ -58,7 +58,7 @@ h1 {
 .weather-row div {
     flex: 1;
     text-align: center;
-    min-width: 100px; /* Set a fixed width for each hour block */
+    min-width: 80px; /* Adjust the width as necessary */
     margin: 0 5px;
 }
 
@@ -66,7 +66,14 @@ h1 {
 .weather-row div:first-child {
     flex: 2;
     text-align: center;
-    min-width: 150px; /* Adjust width for the date and day columns */
+    min-width: 100px; /* Adjust width for the date column */
+}
+
+.weather-header div:nth-child(2),
+.weather-row div:nth-child(2) {
+    flex: 1.5;
+    text-align: center;
+    min-width: 80px; /* Adjust width for the day column */
 }
 
 .temperature {
