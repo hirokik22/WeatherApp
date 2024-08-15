@@ -28,7 +28,8 @@ h1 {
 
 #weather-info {
     width: 100%;
-    overflow-x: auto;
+    overflow-x: auto;  /* Allows horizontal scrolling */
+    overflow-y: auto;  /* Allows vertical scrolling */
     background-color: #f9f9f9;
     position: relative;
 }
@@ -58,7 +59,7 @@ h1 {
 .weather-row div {
     flex: 1;
     text-align: center;
-    min-width: 100px; /* Set a consistent width */
+    min-width: 100px; /* Adjust as necessary for your design */
     padding: 0 5px;
 }
 
