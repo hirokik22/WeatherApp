@@ -32,7 +32,7 @@ h1 {
     background-color: #f9f9f9;
     position: relative;
     display: grid;
-    grid-template-columns: repeat(20, 1fr); /* 20 columns grid */
+    grid-template-columns: 100px 100px repeat(18, 1fr); /* First two columns fixed width, rest are flexible */
     gap: 10px;
 }
 
@@ -56,8 +56,26 @@ h1 {
 .weather-header div,
 .weather-row div {
     text-align: center;
-    min-width: 100px; /* Adjust as necessary for your design */
     padding: 10px 5px;
+}
+
+/* Sticky positioning for the first two columns */
+.weather-header div:nth-child(1),
+.weather-row div:nth-child(1) {
+    position: sticky;
+    left: 0;
+    background-color: #fff; /* Background color to prevent overlap issues */
+    z-index: 2;
+    border-right: 2px solid #ddd;
+}
+
+.weather-header div:nth-child(2),
+.weather-row div:nth-child(2) {
+    position: sticky;
+    left: 100px; /* Adjust this value to match the width of the first column */
+    background-color: #fff;
+    z-index: 2;
+    border-right: 2px solid #ddd;
 }
 
 .temperature-container {
