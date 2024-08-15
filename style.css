@@ -59,24 +59,32 @@ h1 {
     padding: 10px 5px;
 }
 
-/* Sticky positioning for the first two columns with solid background and opacity */
+/* Sticky positioning for the first two columns with solid background and full opacity */
 .weather-header div:nth-child(1),
-.weather-row div:nth-child(1),
-.weather-header div:nth-child(2),
-.weather-row div:nth-child(2) {
+.weather-row div:nth-child(1) {
     position: sticky;
     left: 0;
     background-color: #fff; /* Ensure solid background */
-    opacity: 1; /* Full opacity */
     z-index: 2;
     border-right: 2px solid #ddd;
 }
 
-/* Adjust left position for the second column */
 .weather-header div:nth-child(2),
 .weather-row div:nth-child(2) {
+    position: sticky;
     left: 100px; /* Adjust this value to match the width of the first column */
+    background-color: #fff;
     z-index: 2;
+    border-right: 2px solid #ddd;
+}
+
+/* Ensure the text in the first two columns is fully opaque */
+.weather-header div:nth-child(1),
+.weather-header div:nth-child(2),
+.weather-row div:nth-child(1),
+.weather-row div:nth-child(2) {
+    opacity: 1; /* Full opacity for the text */
+    color: #000; /* Black text color for clarity */
 }
 
 .temperature-container {
