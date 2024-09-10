@@ -27,11 +27,12 @@ h1 {
 
 #weather-info {
     width: 100%;
-    overflow-x: auto;
+    overflow-x: auto;  /* Allows horizontal scrolling */
+    overflow-y: auto;  /* Allows vertical scrolling */
     background-color: #f9f9f9;
     position: relative;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    grid-template-columns: 100px 100px repeat(18, 1fr); /* First two columns fixed width, rest are flexible */
     gap: 10px;
 }
 
@@ -55,8 +56,45 @@ h1 {
 .weather-header div,
 .weather-row div {
     text-align: center;
+    padding: 10px 5px;
+}
+
+/* Sticky positioning for the first two columns with solid background and full opacity */
+.weather-header div:nth-child(1),
+.weather-row div:nth-child(1) {
+    position: sticky;
+    left: 0;
+    background-color: #fff; /* Ensure solid background */
+    z-index: 2;
+    border-right: 2px solid #ddd;
+}
+
+.weather-header div:nth-child(2),
+.weather-row div:nth-child(2) {
+    position: sticky;
+    left: 100px; /* Adjust this value to match the width of the first column */
+    background-color: #fff;
+    z-index: 2;
+    border-right: 2px solid #ddd;
+}
+
+/* Ensure the text in the first two columns is fully opaque */
+.weather-header div:nth-child(1),
+.weather-header div:nth-child(2),
+.weather-row div:nth-child(1),
+.weather-row div:nth-child(2) {
+    opacity: 1; /* Full opacity for the text */
+    color: #000; /* Black text color for clarity */
+}
+
+.temperature-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     padding: 10px;
     border: 1px solid #ddd;
+    border-radius: 5px;
 }
 
 .temperature {
@@ -67,13 +105,6 @@ h1 {
 .precipitation {
     font-size: 1em;
     color: #4b8d64;
-}
-
-.temperature-container {
-    display: grid;
-    place-items: center;
-    padding: 10px;
-    border-radius: 5px;
 }
 
 .heatmap-hot {

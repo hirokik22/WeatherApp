@@ -25,15 +25,7 @@ const processWeatherData = (data) => {
         const weatherDataDiv = document.getElementById('weather-info'); // Get the div where weather data will be displayed
         weatherDataDiv.innerHTML = ''; // Clear any existing content in the div
 
-        // Determine the first and last date in the data
-        const firstDate = formatDatewithoutYear(times[0]);
-        const lastDate = formatDatewithoutYear(times[times.length - 1]);
-
-        // Update the h1 header with the date range
-        const headerTitle = document.querySelector('h1');
-        headerTitle.textContent = `Weather In Copenhagen from ${firstDate} to ${lastDate}`;
-
-        // Create and append header row
+        // Create and append header row (time slots)
         const headerRow = document.createElement('div');
         headerRow.classList.add('weather-header');
         headerRow.appendChild(createDivElement('Date'));
@@ -51,8 +43,12 @@ const processWeatherData = (data) => {
             return acc;
         }, {});
 
+        // Get only the first 8 dates for display
+        const dateKeys = Object.keys(groupedData).slice(0, 8);
+
         // Loop through grouped data and create rows
-        Object.entries(groupedData).forEach(([date, entries]) => {
+        dateKeys.forEach(date => {
+            const entries = groupedData[date];
             const row = document.createElement('div');
             row.classList.add('weather-row');
 
